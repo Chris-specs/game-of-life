@@ -1,5 +1,7 @@
 // Common
 import { useState } from "react"
+// Components
+import Button from "./shared/Button"
 // Utils
 import { randomCells, simulation } from "../utils"
 // Constants
@@ -16,22 +18,36 @@ const Cell = ({ alive }) => (
 const Grid = () => {
     
     const [grid, setGrid] = useState(randomCells)
-    const [runing, setRuning] = useState(false)
+    const [isRun, setIsRun] = useState(false)
+    const [interval, set] = useState(null)
 
-    const handleClick = () => {
-        setRuning(!runing)
+    const handleRun = () => {
+        setIsRun(!isRun)
 
-        setInterval(() => {
-            setGrid(simulation(grid))
-        }, 200);
+        if (isRun) {
+            clearInterval(interval)
+        } else {
+            set(setInterval(() => {
+                setGrid(simulation(grid))
+            }, 200));
+        }
+    }
+
+    const handleReset = () => {
+        clearInterval(interval)
+        setIsRun(false)
+        setGrid(randomCells)
     }
 
     return (
         <>
-            <button onClick={handleClick}>Start</button>
+            <div className='flex gap-4 py-4'>
+                <Button onClick={handleRun} className='px-4 py-2'>{ isRun ? 'Stop' : 'Start'}</Button>
+                <Button onClick={handleReset} className='px-4 py-2'>Reset</Button>
+            </div>
             <div
                 style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1rem))` }}
-                className='grid w-fit bg-gray-900 border border-gray-900'
+                className='grid w-fit bg-dark border border-light rounded-md overflow-hidden'
             >
                 {
                     grid.map(( row, iR ) => 
