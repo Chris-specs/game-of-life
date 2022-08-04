@@ -1,7 +1,5 @@
 // Components
 import Grid from './components/Grid';
-// Styles
-import './App.css';
 
 function App() {
     return (
