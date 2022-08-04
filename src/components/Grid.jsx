@@ -36,7 +36,7 @@ const Grid = () => {
                 {
                     grid.map(( row, iR ) => 
                         row.map(( col, iC ) => (
-                            <Cell alive={ grid[iR][iC] } />
+                            <Cell key={iC} alive={ grid[iR][iC] } />
                         ))
                     )
                 }
