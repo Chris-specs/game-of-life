@@ -16,20 +16,15 @@ export const simulation = ( grid ) => (
                 const newX = iR + x
                 const newY = iC + y
 
-                aliveNeighbors += (newX >= 0 && newX < ROWS && newY >= 0 && newY < COLS) ? grid[newX][newY] : 0
+                if (newX >= 0 && newX < ROWS && newY >= 0 && newY < COLS) {
+                    aliveNeighbors += grid[newX][newY];
+                }
             })
 
-            switch (true) {
-                case aliveNeighbors < 2 || aliveNeighbors > 3 :
-                    grid[iR][iC] = 0;
-                    break;
-            
-                case grid[iR][iC] === 0 && aliveNeighbors === 3 :
-                    grid[iR][iC] = 1;
-                    break;
-            
-                default:
-                    break;
+            if (aliveNeighbors < 2 || aliveNeighbors > 3) {
+                grid[iR][iC] = 0;
+            } else if (grid[iR][iC] === 0 && aliveNeighbors === 3) {
+                grid[iR][iC] = 1;
             }
             return grid[iR][iC]
         } )
