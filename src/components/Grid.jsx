@@ -60,17 +60,11 @@ const Grid = () => {
 
     return (
         <>
-            <div className='w-full flex justify-between py-4'>
-                <Button onClick={handleRun} className='px-6 py-2'>{ isRun ? 'Stop' : 'Start'}</Button>
-                <Button onClick={handleReset} className='px-6 py-2'>Reset</Button>
-                <Button onClick={handleClean} className='px-6 py-2'>Clean</Button>
-            </div>
-            <div className="flex flex-col-reverse">
-                <div className="flex justify-between py-4">
-                    <Button onClick={() => handlePattern(blinker)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/blinker.png' alt="Blinker" /></Button>
-                    <Button onClick={() => handlePattern(toad)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/toad.png' alt="Toad" /></Button>
-                    <Button onClick={() => handlePattern(chain)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/chain.png' alt="Chain" /></Button>
-                    <Button onClick={() => handlePattern(glider)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/glider.png' alt="Glider" /></Button>
+            <section className='flex flex-col items-center'>
+                <div className='w-full flex justify-between py-4'>
+                    <Button onClick={handleRun} className='px-6 py-2'>{ isRun ? 'Stop' : 'Start'}</Button>
+                    <Button onClick={handleReset} className='px-6 py-2'>Reset</Button>
+                    <Button onClick={handleClean} className='px-6 py-2'>Clean</Button>
                 </div>
                 <div
                     style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1rem))` }}
@@ -84,7 +78,13 @@ const Grid = () => {
                         )
                     }
                 </div>
-            </div>
+                <div className="w-full flex justify-between py-4">
+                    <Button onClick={() => handlePattern(blinker)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/blinker.png' alt="Blinker" /></Button>
+                    <Button onClick={() => handlePattern(toad)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/toad.png' alt="Toad" /></Button>
+                    <Button onClick={() => handlePattern(chain)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/chain.png' alt="Chain" /></Button>
+                    <Button onClick={() => handlePattern(glider)} className='!bg-transparent border border-light overflow-hidden'><img className='w-16 h-16' src='/assets/img/glider.png' alt="Glider" /></Button>
+                </div>
+            </section>
         </>
     )
 }
